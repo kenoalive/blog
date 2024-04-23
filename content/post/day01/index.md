@@ -2,7 +2,7 @@
 title: 一个自留地
 description: 说点想说的话
 date: 2024-04-23 00:00:00+0000
-image: photo.jpg
+image: 1.jpg
 categories:
   - 日常
 tags:
