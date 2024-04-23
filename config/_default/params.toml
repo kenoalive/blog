@@ -1,4 +1,4 @@
-# Pages placed under these sections will be shown on homepage and archive page.
+# Pages placed under these sections will be shown on page and archive page.
 mainSections = ["post"]
 # Output page's full content in RSS.
 rssFullContent = true
