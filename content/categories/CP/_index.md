@@ -1,7 +1,7 @@
 ---
 title: CP
 description: 一些搞过的CP
-image: cp.jpg
+image: hualu5041996.jpg
 
 # Badge style
 style:
