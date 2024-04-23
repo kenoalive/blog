@@ -2,7 +2,7 @@
 baseurl = "https://kenoalive.github.io/blog/"
 languageCode = "zh-Hans"
 paginate = 5
-title = "KKzero的博客"
+title = "舟夜听雨"
 
 # Theme i18n support
 # Available values: en, fr, id, ja, ko, pt-br, zh-cn, zh-tw, es, de, nl, it, th, el, uk, ar
@@ -13,4 +13,4 @@ defaultContentLanguage = "zh-cn"
 hasCJKLanguage = false
 
 # Change it to your Disqus shortname before using
-disqusShortname = "KKzero"
+disqusShortname = "舟夜听雨"
