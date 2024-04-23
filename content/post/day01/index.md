@@ -1,7 +1,6 @@
 ---
 title: 一个自留地
 description: 说点想说的话
-slug: hello-world
 date: 2024-04-23 00:00:00+0000
 image: cover.jpg
 categories:
