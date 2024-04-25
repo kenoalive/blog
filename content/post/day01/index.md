@@ -18,3 +18,4 @@ weight: 1 # You can add weight to some posts to override the default sorting (da
 - 覆盖了花里胡哨的标签颜色，统一为灰色边框
 - 文章详情页去掉了更新时间和阅读时长，感觉功能跟下面的最后更新重复了，看着很繁琐
 - 调整了首页标题的字体大小
+- 移动端的文章详情页边距调整

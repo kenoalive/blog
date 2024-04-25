@@ -17,9 +17,8 @@
 }
 :root {
     --card-text-color-main: hsl(240deg 4% 20% / 90%) !important;
-    --article-font-size: 1.5rem !important;
+    --article-font-size: 1.6rem !important;
 }
-
 
 .powerby {
     display: none;
@@ -50,9 +49,17 @@
     text-align: center;
     color: hsl(240, 8%, 12%);
 }
-.article-category a{
+.article-category a {
     color: #999 !important;
     padding: 5px 11px;
     background-color: #fff !important;
     border: 1px solid #999;
+}
+
+@media (max-width: 768px) {
+    .article-content {
+        padding: 0 15px;
+        font-size: 1.5rem !important;
+
+    }
 }
