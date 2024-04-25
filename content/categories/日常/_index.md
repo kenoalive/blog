@@ -5,6 +5,6 @@ image: live.jpg
 
 # Badge style
 style:
-  background: "#E5DDC5"
+  background: "#92c1d0"
   color: "#fff"
 ---

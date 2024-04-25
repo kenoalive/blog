@@ -5,7 +5,7 @@
     background: none;
 }
 .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
-    width: 25px !important;
+    width: 24px !important;
     height: 1.5px !important;
 }
 .article-title {
@@ -18,4 +18,13 @@
 :root {
     --card-text-color-main: #333 !important;
     --article-font-size: 1.5rem !important;
+}
+.powerby {
+    display: none;
+}
+.hamburger-inner::before {
+    top: -8px;
+}
+.hamburger-inner::after {
+    bottom: -8px;
 }
