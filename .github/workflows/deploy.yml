@@ -1,4 +1,4 @@
-name: Deploy to Github Pages
+name: 更新内容到服务器
 
 on:
     push:
@@ -42,10 +42,13 @@ jobs:
             - name: Build
               run: hugo --minify --gc
 
-            - name: Deploy 🚀
-              uses: JamesIves/github-pages-deploy-action@v4
-              with:
-                  branch: gh-pages
-                  folder: public
-                  clean: true
-                  single-commit: true
+            - name: 上传到服务器
+              uses: easingthemes/ssh-deploy@main
+              env:
+                # 私钥
+                SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+                ARGS: "-avzr --delete"
+                SOURCE: "./public/"
+                REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+                REMOTE_USER: "root"
+                TARGET: "/www/wwwroot/blog"
