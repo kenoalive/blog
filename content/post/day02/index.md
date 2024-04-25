@@ -1,6 +1,6 @@
 ---
 title: hugo博客部署到服务器
-date: 2024-04-25 17:53
+date: 2024-04-25 15:00:00
 image: cover.jpg
 categories: ["前端"]
 weight: 2 
