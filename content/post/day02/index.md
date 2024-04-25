@@ -73,6 +73,6 @@ weight: 1 # You can add weight to some posts to override the default sorting (da
 3. 提交代码到Github，成功的话会在服务器/www/wwwroot/blog文件夹里看见博客的静态页面文件
 4. 在宝塔添加站点，如果有域名的话可以填写域名，这边暂时没有，所以直接写ip了
     
-    ![Untitled](site.png)
+    ![宝塔新建站点](site.png)
     
 5. 访问网站：http://124.70.60.248:3002/ 成功😊
