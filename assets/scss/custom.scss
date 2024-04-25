@@ -22,9 +22,9 @@
     --category-background:#fff;
 }
 :root[data-scheme=dark] {
-    --card-text-color-main: hsla(0, 0%, 79%, 0.9) !important;
+    --card-text-color-main: hsl(0deg 0% 90.83% / 78%) !important;
     --category:#e5e5e5;
-    --category-background:hsl(0deg 0.67% 29.55%);
+    --category-background:transparent;
 }
 .powerby {
     display: none;
