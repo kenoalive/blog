@@ -1,5 +1,5 @@
 # Change baseurl before deploy
-baseurl = "https://kenoalive.github.io/blog/"
+baseurl = "http://124.70.60.248:3002/"
 languageCode = "zh-Hans"
 paginate = 5
 title = "舟夜听雨"
