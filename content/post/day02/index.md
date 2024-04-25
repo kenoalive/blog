@@ -3,8 +3,10 @@ title: hugo博客部署到服务器
 date: 2024-04-25 17:53
 image: cover.jpg
 categories: ["前端"]
-weight: 1 # You can add weight to some posts to override the default sorting (date descending)
+weight: 2 
 ---
+> 之前一直是部署在Github上的，但是不开梯子的话访问Github很慢，于是干脆部署在自己服务器了，用的是Github actions，非常方便
+
 1. 在服务器上新建/www/wwwroot/blog文件夹
 2. 修改.github/workflows/deploy.yml 为
     
@@ -75,4 +77,4 @@ weight: 1 # You can add weight to some posts to override the default sorting (da
     
     ![宝塔新建站点](site.png)
     
-5. 访问网站：http://124.70.60.248:3002/ 成功😊
+5. 访问网站：[http://124.70.60.248:3002/](http://124.70.60.248:3002/) 成功😊

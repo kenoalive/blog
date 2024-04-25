@@ -72,3 +72,10 @@
         font-size: 1.5rem !important;
     }
 }
+
+.widget .widget-icon svg {
+    display: none;
+}
+.widget-title.section-title {
+    margin-bottom: 14px;
+}
