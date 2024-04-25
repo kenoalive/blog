@@ -16,9 +16,11 @@
     font-size: 1.6rem !important;
 }
 :root {
-    --card-text-color-main: #333 !important;
+    --card-text-color-main: hsl(240deg 4% 20% / 90%) !important;
     --article-font-size: 1.5rem !important;
 }
+
+
 .powerby {
     display: none;
 }
@@ -27,4 +29,30 @@
 }
 .hamburger-inner::after {
     bottom: -8px;
+}
+
+
+
+.sidebar header .site-name {
+    font-size: 1.8rem;
+}
+
+.article-page .article-time {
+    display: none;
+}
+
+.article-page .article-content>p {
+    margin: 1.2em 0;
+}
+.article-page .article-title {
+    font-size: 2.5rem !important;
+    font-weight: 600 !important;
+    text-align: center;
+    color: hsl(240, 8%, 12%);
+}
+.article-category a{
+    color: #999 !important;
+    padding: 5px 11px;
+    background-color: #fff !important;
+    border: 1px solid #999;
 }
