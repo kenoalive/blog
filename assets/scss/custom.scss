@@ -54,6 +54,11 @@
     padding: 5px 11px;
     background-color: #fff !important;
     border: 1px solid #999;
+    transition: all 0.5s ease;
+}
+.article-category a:hover {
+    color: #525252 !important;
+    border: 1px solid #5a5a5a;
 }
 
 @media (max-width: 768px) {
