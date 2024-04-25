@@ -1,7 +1,7 @@
 ---
 title: hugo博客部署到服务器
 date: 2024-04-25 17:53
-image: cover.png
+image: cover.jpg
 categories: ["前端"]
 weight: 1 # You can add weight to some posts to override the default sorting (date descending)
 ---
