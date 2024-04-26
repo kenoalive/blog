@@ -1,13 +1,13 @@
 ---
-title: NestJs入门
-date: 2024-04-26 10:00:00
+title: NestJs新手入门
+date: 2024-04-26 00:00:00
 image: image.png
-categories: ["后端"]
-weight: 2 
+categories: ["前端"]
+weight: 1 
 ---
 > 对于后端框架一直停留在用express和koa写写curd的水平，今天就学一下用Nest写写curd 😂
 
-### 项目启动
+## 项目启动
 ```bash
     npm i -g @nestjs/cli
     nest new nest-crud-demo  
@@ -17,7 +17,7 @@ weight: 2
 ```
 打开localhost:3000，有内容说明运行成功
 
-### 项目结构
+## 项目结构
 
 ``` css
 src
@@ -77,12 +77,13 @@ export class AppService {
 
 @Injectable()用来标记可注入的服务
 
-### Controller
-> 官方文档
+## Controller
+> 官方文档：
 Controllers are responsible for handling incoming requests and returning responses to the client.
-Controllers负责处理传入请求并向客户端返回响应。
+**Controllers 负责处理传入请求并向客户端返回响应。**
 
 `Controller` 的作用就是提供api路由、处理前端传入路由的http请求和返回响应
+
 将代码里的app.controller.ts代码改为：
 ```ts
 import { Controller, Get, Post } from '@nestjs/common';
@@ -107,19 +108,20 @@ export class AppController {
  - `getHello()` 方法使用了 `@Get()` 装饰器来指定路由路径为 `/app`，它调用了 `AppService` 中的 `getHello()` 方法，并返回相应的字符串。
  - `findAll()` 方法使用了 `@Get('users')` 装饰器来指定路由路径为 `/app/users`，它暂时返回了一个字符串表示所有用户的信息。通常情况下，我们会调用相应的服务方法
 
- 访问 `http://localhost:3000/app/users` ，返回all users
- 使用postman请求 `http://localhost:3000/app/list/111`返回 update
+ 访问 `http://localhost:3000/app/users`  返回all users
+ 
+ 使用postman请求 `http://localhost:3000/app/list/111`  返回 update
 
 
 
- ### Provider
+ ## Provider
 `provider`的含义就是提供服务，一般用来操作数据库以及处理数据
 
 > 个人理解就是：module用来包含controller和service，module本身可以导入和导出其他module
 controller用来处理路由和请求，service用来操作数据库
 
 
-### nest快捷命令
+## nest快捷命令
 ```bash 
 nest g [文件类型] [文件名] [文件目录]
 ```
