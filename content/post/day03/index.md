@@ -2,7 +2,7 @@
 title: NestJs新手入门
 date: 2024-04-26 00:00:00
 image: image.png
-categories: ["前端"]
+categories: ["后端"]
 weight: 1 
 ---
 > 对于后端框架一直停留在用express和koa写写curd的水平，今天就学一下用Nest写写curd 😂
@@ -118,6 +118,7 @@ export class AppController {
 `provider`的含义就是提供服务，一般用来操作数据库以及处理数据
 
 > 个人理解就是：module用来包含controller和service，module本身可以导入和导出其他module
+
 controller用来处理路由和请求，service用来操作数据库
 
 
