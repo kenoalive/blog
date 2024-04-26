@@ -78,6 +78,10 @@ export class AppService {
 @Injectable()用来标记可注入的服务
 
 ### Controller
+> 官方文档
+Controllers are responsible for handling incoming requests and returning responses to the client.
+Controllers负责处理传入请求并向客户端返回响应。
+
 `Controller` 的作用就是提供api路由、处理前端传入路由的http请求和返回响应
 将代码里的app.controller.ts代码改为：
 ```ts
