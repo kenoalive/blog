@@ -81,6 +81,10 @@
 }
 
 figure.gallery-image {
-    margin: 0 10px !important;
+    margin: 0 15px !important;
     overflow: hidden;
+}
+
+figure.gallery-image img {
+    border-radius: 2px;
 }
