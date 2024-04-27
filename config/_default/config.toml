@@ -2,7 +2,7 @@
 baseurl = "http://124.70.60.248:3002/"
 languageCode = "zh-Hans"
 paginate = 5
-title = "舟夜听雨"
+title = "又非雾"
 
 # Theme i18n support
 # Available values: en, fr, id, ja, ko, pt-br, zh-cn, zh-tw, es, de, nl, it, th, el, uk, ar
@@ -13,4 +13,4 @@ defaultContentLanguage = "zh-cn"
 hasCJKLanguage = false
 
 # Change it to your Disqus shortname before using
-disqusShortname = "舟夜听雨"
+disqusShortname = "又非雾"
