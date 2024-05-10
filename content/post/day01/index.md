@@ -14,8 +14,7 @@ weight: 3 # You can add weight to some posts to override the default sorting (da
 
 具体改动如下：
 
-- ~~将默认字体改为了 Google Font 的 Noto Serif SC，非常文艺范~~
-- 后来又改成了 Noto Sans SC，因为上面的字体看着眼花（如下图
+- 将默认字体改为了Noto Sans SC
 - 覆盖了花里胡哨的标签颜色，统一为灰色边框
 - 文章详情页去掉了更新时间和阅读时长，因为感觉功能跟下面的最后更新重复了，看着很繁琐
 - 调整了首页标题的字体大小
