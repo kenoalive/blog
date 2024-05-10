@@ -20,7 +20,4 @@ weight: 3 # You can add weight to some posts to override the default sorting (da
 - 文章详情页去掉了更新时间和阅读时长，因为感觉功能跟下面的最后更新重复了，看着很繁琐
 - 调整了首页标题的字体大小
 - 移动端的文章详情页边距调整
-
-![Noto Serif SC](2.png)
-
-![Noto Sans SC](1.png)
+- 调整了文章图片大小
