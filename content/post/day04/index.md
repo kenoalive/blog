@@ -8,14 +8,12 @@ weight: 1 # You can add weight to some posts to override the default sorting (da
 
 > 一些拍摄
 
-![玄武湖1](DSC02088.jpg)
 
-![玄武湖2](DSC02092.jpg)
-
-![忘记是哪了](DSC02124.jpg)
-
-![夫子庙](DSC02133.jpg)
-
-![秦淮河 人山人海 挤着拍了一张就走了](DSC02142.jpg)
-
-![楼下小公园](DSC02037.jpg)
+<img src="DSC02088.jpg" width="600px" height="50%">
+<img src="DSC02092.jpg" width="600px" height="50%">
+<img src="DSC02090.jpg" width="600px" height="50%">
+<img src="DSC02124.jpg" width="600px" height="50%">
+<img src="DSC02143.jpg" width="600px" height="50%">
+<img src="DSC02133.jpg" width="600px" height="50%">
+<img src="DSC02142.jpg" width="600px" height="50%">
+<img src="DSC02037.jpg" width="600px" height="50%">

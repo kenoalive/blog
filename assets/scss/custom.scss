@@ -88,3 +88,14 @@ figure.gallery-image {
 figure.gallery-image img {
     border-radius: 2px;
 }
+
+
+
+@media (min-width: 768px) {
+    .article-page .main-article .article-content img {
+        max-width: 100%;
+        height: auto;
+        margin: 0 auto;
+        transform: translateX(50%);
+    }
+}
