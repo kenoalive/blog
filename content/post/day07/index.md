@@ -258,3 +258,31 @@ var lengthOfLastWord = function(s) {
     return end - start;
 };
 ```
+
+
+
+### 最长公共前缀
+编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串 ""。
+
+#### 我的题解
+初始化prefix为数组第一项`strs[0]`，从`strs[1]`开始循环对比 `prefix` 和字符串
+
+```js
+var longestCommonPrefix = function (strs) {
+    let prefix = ""
+    if (!strs.length) return ""
+    prefix = strs[0]
+
+    for (let i = 1; i < strs.length; i++) {
+        if(strs[i] === "") return ""
+
+        for (let j = 0; j < prefix.length; j++) {
+            if (strs[i][j] !== prefix[j]) {
+                prefix = prefix.substring(0, j)
+            }
+        }
+    }
+    return prefix;
+};
+
+```
