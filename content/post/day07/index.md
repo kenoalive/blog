@@ -159,7 +159,7 @@ var removeDuplicates = function (nums) {
 };
 ```
 
-### 官方题解
+#### 官方题解
 
 还是用双指针：
 如果数组 `nums` 的长度为0，则数组不包含任何元素，因此返回0。
