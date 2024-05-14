@@ -182,3 +182,79 @@ var removeDuplicates = function(nums) {
     return slow;
 };
 ```
+
+
+### 多数元素
+
+给定一个大小为 n 的数组 nums ，返回其中的多数元素。多数元素是指在数组中出现次数 大于 ⌊ n/2 ⌋ 的元素。
+
+你可以假设数组是非空的，并且给定的数组总是存在多数元素。
+
+#### 我的题解
+使用Map统计每个元素出现的次数，如果times 大于 n/2，则输出
+
+```js
+var majorityElement = function (nums) {
+    const halfLen = nums.length / 2;
+    const numMap = new Map()
+    let target = 0;
+
+    for (item of nums) {
+        let times = numMap.has(item) ? numMap.get(item) + 1 : 1
+        numMap.set(item, times)
+        if (times > halfLen) {
+            return item
+        }
+    }
+};
+```
+
+#### 优化题解
+因为大于一半, 所以排序后的 中间那个数必是
+```js
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var majorityElement = function(nums) {
+  nums.sort((a,b) => a - b)
+  return nums[Math.floor(nums.length / 2)]
+};
+```
+用对象记录：
+```js
+
+var majorityElement = function(nums) {
+   let half = nums.length / 2
+   let obj = {}
+   for(let num of nums){
+      obj[num] = (obj[num] || 0) + 1
+      if(obj[num] > half) return num
+   }
+};
+```
+
+### 最后一个单词的长度
+给你一个字符串`s`，由若干单词组成，单词前后用一些空格字符隔开。返回字符串中最后一个单词的长度。
+单词是指仅由字母组成、不包含任何空格字符的最大子字符串
+
+#### 我的题解
+现成的js api，调就完事
+```js
+var lengthOfLastWord = function(s) {
+    return s.trim().split(' ').pop().length;
+};
+```
+
+#### 官方题解
+
+```js
+var lengthOfLastWord = function(s) {
+    let end = s.length - 1;
+    while(end >= 0 && s[end] == ' ') end--;
+    if(end < 0) return 0;
+    let start = end;
+    while(start >= 0 && s[start] != ' ') start--;
+    return end - start;
+};
+```
