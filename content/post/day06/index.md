@@ -7,7 +7,7 @@ weight: 1
 ---
 > 最近接到一个后台水印开发的需求，本以为很简单的功能，结果前前后后改了三版，简直汗流浃背了
 
-### 想当然的第一版
+### 第一版
 水印算是前端常见功能了，如果项目用的是[antd](https://www.antdv.com/components/watermark)或者[element-plus](https://cn.element-plus.org/zh-CN/component/watermark.html)，那么可以直接使用框架提供的组件，大概十分钟就能搞定。
 
 而公司后台用的是八百年前的vue2 + element，想要水印功能只能自己手动加，不过事情到这里还不是很麻烦，因为github上关于水印现成的包一抓一大把，搜了下有[watermarkjs](https://github.com/brianium/watermarkjs)、[watermark-dom](https://github.com/saucxs/watermark-dom)，用起来也不费劲。
@@ -105,18 +105,9 @@ setWatermark(flag) {
 ```
 刷新页面，水印成功展示~开关水印测试也没问题，于是当天就火速上线内测了。
 
-
-### 稀里糊涂的第二版
+### 第二版
 正式上线几天后，正值五一假期，我收到了值班技术的消息：部分用户反馈系统没有开水印功能，但是还是展示水印了。
-
-于是立马开始排查，但是登录用户后台看一切正常，值班技术也说没办法复现，这下就难办了。
-
-想了半天，决定在初始样式加了一行 `div.style.block = 'none'`，先确保未开启水印的用户不会出现问题，节假日后再仔细排查。
-
-
-### 痛定思痛的第三版
-
-节假日回来立刻翻出element-plus源码学习watermark组件的实现，发现他们是采用组件的形式实现的：
+于是立刻翻出element-plus源码学习watermark组件的实现，发现他们是采用组件的形式实现的：
 ```vue
 <watermark>
   <div class="main-container" id="main-container">
@@ -125,7 +116,7 @@ setWatermark(flag) {
 </watermark>
 ```
 
-而watermark代码如下（vue2版本）：
+而watermark代码如下（改写vue2版本）：
 ```vue
 <template>
   <div class="containerRef" ref="parentRef">
@@ -424,3 +415,4 @@ MutationObserver 是一个JavaScript API，用于监控DOM（文档对象模型�
 
 所以通过这一系列代码,当容器元素或其子元素发生变动时,如果影响到了水印元素,就会自动销毁旧的水印并重绘新的水印,确保水印的持续存在。
 
+测试上线，成功修复问题~！

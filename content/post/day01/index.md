@@ -1,6 +1,6 @@
 ---
-title: 一个自留地
-date: 2024-04-23 00:00:00+0000
+title: 博客上线
+date: 2023-06-28 00:00:00+0000
 image: 1.jpg
 categories: ["日常"]
 weight: 3 # You can add weight to some posts to override the default sorting (date descending)
