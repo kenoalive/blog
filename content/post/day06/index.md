@@ -2,17 +2,24 @@
 title: 前端水印方案
 date: 2024-05-10 00:00:00
 image: cover.jpg
-categories: ["前端"]
-weight: 1 
+categories: ['前端']
+weight: 1
 ---
-> 最近接到一个后台水印开发的需求，本以为很简单的功能，结果前前后后改了三版，简直汗流浃背了
+
+> 最近接到一个后台水印开发的需求，本以为很简单的功能，结果还是坑不少
 
 ### 第一版
-水印算是前端常见功能了，如果项目用的是[antd](https://www.antdv.com/components/watermark)或者[element-plus](https://cn.element-plus.org/zh-CN/component/watermark.html)，那么可以直接使用框架提供的组件，大概十分钟就能搞定。
 
-而公司后台用的是八百年前的vue2 + element，想要水印功能只能自己手动加，不过事情到这里还不是很麻烦，因为github上关于水印现成的包一抓一大把，搜了下有[watermarkjs](https://github.com/brianium/watermarkjs)、[watermark-dom](https://github.com/saucxs/watermark-dom)，用起来也不费劲。
+水印算是前端常见功能了，如果项目用的是[antd](https://www.antdv.com/components/watermark)或者[element-plus](https://cn.element-plus.org/zh-CN/component/watermark.html)，那么可以直接
+使用框架提供的组件，大概十分钟就能搞定。
 
-但是我脑子一抽，想着加水印嘛，不过就是用canvas添加文字然后渲染成背景图片，自己公司项目还不用封装各种参数，直接写死就ok，简直太简单了！于是说干就干，三下五除二封装了一个watermark.js：
+不过公司后台用的是 vue2 + element，想要水印功能只能自己手动加，不过事情到这里还不是很麻烦，因为 github 上关于水印现成的包一抓一大把，搜了下
+有[watermarkjs](https://github.com/brianium/watermarkjs)、[watermark-dom](https://github.com/saucxs/watermark-dom)，用起来也不费劲。
+
+但是我想着加水印嘛，不过就是用 canvas 添加文字然后渲染成背景图片，自己写也行，于是就有了以下的功能。
+
+watermark.js：
+
 ```js
 const watermark = {};
 
@@ -45,8 +52,7 @@ const setWatermark = (str, targetDom) => {
   div.style.zIndex = '100000';
   div.style.width = targetDom.clientWidth + 'px';
   div.style.height = targetDom.clientHeight + 'px';
-  div.style.backgroundImage =
-    'url(' + imageUrl + '),' + 'url(' + imageUrl + ')';
+  div.style.backgroundImage = 'url(' + imageUrl + '),' + 'url(' + imageUrl + ')';
   div.style.backgroundPosition = `125px 90px, 0 0`;
   document.body.appendChild(div);
   return id;
@@ -79,9 +85,9 @@ watermark.hide = () => {
   document.getElementById('watermark').style.display = 'none';
 };
 export default watermark;
-
 ```
-在layout.vue调用：
+
+在 layout.vue 调用：
 
 ```js
 mounted() {
@@ -98,16 +104,20 @@ methods: {
 ```
 
 在开关控制页，每次字段更新之后调用：
+
 ```js
 setWatermark(flag) {
     flag ? watermark.show() : watermark.hide()
 },
 ```
+
 刷新页面，水印成功展示~开关水印测试也没问题，于是当天就火速上线内测了。
 
 ### 第二版
-正式上线几天后，正值五一假期，我收到了值班技术的消息：部分用户反馈系统没有开水印功能，但是还是展示水印了。
-于是立刻翻出element-plus源码学习watermark组件的实现，发现他们是采用组件的形式实现的：
+
+正式上线几天后，正值五一假期，我收到了值班技术的消息：部分用户反馈系统没有开水印功能，但是还是展示水印了。于是立刻翻出 element-plus 源码学习 watermark 组件的实现，发现他们是采用组
+件的形式实现的：
+
 ```vue
 <watermark>
   <div class="main-container" id="main-container">
@@ -116,7 +126,8 @@ setWatermark(flag) {
 </watermark>
 ```
 
-而watermark代码如下（改写vue2版本）：
+而 watermark 代码如下（重新改写 vue2 版本）：
+
 ```vue
 <template>
   <div class="containerRef" ref="parentRef">
@@ -127,20 +138,17 @@ setWatermark(flag) {
 const getPixelRatio = () => window.devicePixelRatio || 1;
 const BaseSize = 2;
 const FontGap = 3;
-const toLowercaseSeparator = (key) =>
-  key.replace(/([A-Z])/g, '-$1').toLowerCase();
-const getStyleStr = (style) =>
+const toLowercaseSeparator = key => key.replace(/([A-Z])/g, '-$1').toLowerCase();
+const getStyleStr = style =>
   Object.keys(style)
-    .map((key) => `${toLowercaseSeparator(key)}: ${style[key]};`)
+    .map(key => `${toLowercaseSeparator(key)}: ${style[key]};`)
     .join(' ');
 
 function reRendering(mutation, watermarkElement) {
   let flag = false;
   // 是否删除水印节点
   if (mutation.removedNodes.length) {
-    flag = Array.from(mutation.removedNodes).some(
-      (node) => node === watermarkElement
-    );
+    flag = Array.from(mutation.removedNodes).some(node => node === watermarkElement);
   }
   // 是否修改过水印dom属性值
   if (mutation.type === 'attributes' && mutation.target === watermarkElement) {
@@ -166,19 +174,19 @@ export default {
         fontFamily: 'sans-serif',
         fontStyle: 'normal',
         fontWeight: 'normal',
-        color: 'rgba(0, 0, 0, 0.10)'
-      })
+        color: 'rgba(0, 0, 0, 0.10)',
+      }),
     },
     clockwise: { type: Boolean, default: true },
     opacity: { type: Number, default: 0.5 },
     gap: { type: Array, default: () => [20, 20] },
-    offset: { type: Array, default: () => [0, 0] }
+    offset: { type: Array, default: () => [0, 0] },
   },
   data() {
     return {
       watermarkRef: null,
       stopObservation: false,
-      observe: null
+      observe: null,
     };
   },
   components: {},
@@ -202,7 +210,7 @@ export default {
         width: '100%',
         height: '100%',
         pointerEvents: 'none',
-        backgroundRepeat: 'repeat'
+        backgroundRepeat: 'repeat',
       };
 
       let positionLeft = offsetLeft - gapXCenter;
@@ -223,7 +231,7 @@ export default {
       markStyle.backgroundPosition = `${positionLeft}px ${positionTop}px`;
 
       return markStyle;
-    }
+    },
   },
   watch: {
     show(val) {
@@ -234,13 +242,13 @@ export default {
       setTimeout(() => {
         this.stopObservation = false;
       });
-    }
+    },
   },
   methods: {
     onMutate(records) {
       if (this.stopObservation) return;
 
-      records.forEach((mutation) => {
+      records.forEach(mutation => {
         if (!reRendering(mutation, this.watermarkRef)) return;
         this.destroyWatermark();
         this.renderWatermark();
@@ -267,11 +275,9 @@ export default {
       if (!image && ctx.measureText) {
         ctx.font = `${Number(fontSize)}px ${fontFamily}`;
         const contents = Array.isArray(content) ? content : [content];
-        const widths = contents.map((item) => ctx.measureText(item).width);
+        const widths = contents.map(item => ctx.measureText(item).width);
         defaultWidth = Math.ceil(Math.max(...widths));
-        defaultHeight =
-          Number(fontSize.value) * contents.length +
-          (contents.length - 1) * FontGap;
+        defaultHeight = Number(fontSize.value) * contents.length + (contents.length - 1) * FontGap;
       }
 
       return [width ?? defaultWidth, height ?? defaultHeight];
@@ -320,13 +326,7 @@ export default {
       this.fillTexts(ctx, drawX, drawY, drawWidth, drawHeight);
       ctx.restore();
       this.rotateWatermark(ctx, alternateRotateX, alternateRotateY, rotate);
-      this.fillTexts(
-        ctx,
-        alternateDrawX,
-        alternateDrawY,
-        drawWidth,
-        drawHeight
-      );
+      this.fillTexts(ctx, alternateDrawX, alternateDrawY, drawWidth, drawHeight);
       this.appendWatermark(canvas.toDataURL(), markWidth);
     },
     appendWatermark(base64Url, markWidth) {
@@ -338,7 +338,7 @@ export default {
       const attrs = getStyleStr({
         ...this.markStyle,
         backgroundImage: `url('${base64Url}')`,
-        backgroundSize: `${(gapX + markWidth) * BaseSize}px`
+        backgroundSize: `${(gapX + markWidth) * BaseSize}px`,
       });
       this.watermarkRef.setAttribute('style', attrs);
       this.$el.append(this.watermarkRef);
@@ -365,29 +365,25 @@ export default {
       contents?.forEach((item, index) => {
         console.log(drawX);
         console.log(drawY + index * (mergedFontSize + FontGap * ratio));
-        ctx.fillText(
-          item ?? '',
-          drawX + 20,
-          drawY + index * (mergedFontSize + FontGap * ratio) + 40
-        );
+        ctx.fillText(item ?? '', drawX + 20, drawY + index * (mergedFontSize + FontGap * ratio) + 40);
       });
     },
     destroyWatermark() {
       if (!this.watermarkRef) return;
       this.watermarkRef.remove();
       this.watermarkRef = undefined;
-    }
+    },
   },
   mounted() {
     if (!this.show) {
-      return
+      return;
     }
     this.renderWatermark();
     this.$nextTick(() => {
       this.observe = this.useMutationObserver(this.$el, this.onMutate, {
         attributes: true,
         childList: true,
-        subtree: true
+        subtree: true,
       });
     });
   },
@@ -395,24 +391,27 @@ export default {
     this.destroyWatermark();
     this.observe.disconnect();
     this.observe = null;
-  }
+  },
 };
 </script>
 ```
 
-其中有这么一个api：`MutationObserver`
+其中有这么一个 api：`MutationObserver`
 
 #### MutationObserver
-MutationObserver 是一个JavaScript API，用于监控DOM（文档对象模型）的变化。当观察的DOM元素或其子元素发生变化时，它会触发一个回调函数。这使得你可以在元素添加、删除或修改时执行特定的操作。
 
-在这里主要用来实现水印的防篡改，防止一些懂web的客户打开f12手动display:none或者直接删掉水印dom元素。
+MutationObserver 是一个 JavaScript API，用于监控 DOM（文档对象模型）的变化。当观察的 DOM 元素或其子元素发生变化时，它会触发一个回调函数。这使得你可以在元素添加、删除或修改时执行特
+定的操作。
 
-`useMutationObserver`方法利用浏览器原生的MutationObserverAPI创建了一个观察者实例,用于监听指定DOM元素(target)的变动。这里传入的target是该组件渲染的根元素this.$el。
+在这里主要用来实现水印的防篡改，防止一些懂 web 的客户打开 f12 手动 display:none 或者直接删掉水印 dom 元素。
 
-`onMutate`是观察者的回调函数,它会在监听到target元素或其子元素的变动时被触发执行。在回调中首先通过`reRendering`函数判断变动是否影响到了水印元素,如果是,则调用`destroyWatermark`销毁当前的水印元素,然后调用`renderWatermark`重新绘制新的水印元素。
+`useMutationObserver`方法利用浏览器原生的 MutationObserverAPI 创建了一个观察者实例，用于监听指定 DOM 元素(target)的变动。这里传入的 target 是该组件渲染的根元素 this.$el。
 
-`reRendering`函数的作用是检测变动记录(mutation)中是否包含了对水印元素的删除或修改属性的操作,如果是则返回true。
+`onMutate`是观察者的回调函数,它会在监听到 target 元素或其子元素的变动时被触发执行。在回调中首先通过`reRendering`函数判断变动是否影响到了水印元素,如果是,则调用`destroyWatermark`销毁
+当前的水印元素,然后调用`renderWatermark`重新绘制新的水印元素。
 
-所以通过这一系列代码,当容器元素或其子元素发生变动时,如果影响到了水印元素,就会自动销毁旧的水印并重绘新的水印,确保水印的持续存在。
+`reRendering`函数的作用是检测变动记录(mutation)中是否包含了对水印元素的删除或修改属性的操作，如果是则返回 true。
+
+所以通过这一系列代码，当容器元素或其子元素发生变动时，如果影响到了水印元素，就会自动销毁旧的水印并重绘新的水印，确保水印的持续存在。
 
 测试上线，成功修复问题~！
