@@ -6,7 +6,7 @@ categories: ["后端"]
 weight: 1
 ---
 
-> 对于后端框架一直停留在用 express 和 koa 写写 curd 的水平，今天就学一下用 Nest 写写 curd 😂
+>  闲来无事，学一下使用Nest
 
 ## 项目启动
 
